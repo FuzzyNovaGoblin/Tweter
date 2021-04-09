@@ -1,3 +1,3 @@
 # Twater
 
-Like twiter but bad
+Like twitter but bad
