@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Quantico-Bold
+font link: https://fonts.google.com/specimen/Quantico
+font author: MADType
+font author site: http://www.madtype.com/
+Slogan Font: Renner-Thin.otf
+
+icon designer: Keisuke Chiku
+icon designer link: /keisuke.chiku
+        
+{"bg":"#EBF2F2","font":"#0F2020","icon-gradient-0":"#050922","icon-gradient-1":"#6EE6C7","slogan":"#233434"}
+      
