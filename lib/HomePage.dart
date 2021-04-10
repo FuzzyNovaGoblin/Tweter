@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:twater/UX/Titlebar.dart';
+import 'package:twater/UX/Tweet.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,8 +12,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: titleBar(),
-      backgroundColor: Color(0xFF566573),
-    );
+        // appBar: titleBar(),
+        backgroundColor: Color(0xFF566573),
+        body: CustomScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          slivers: [
+            titleBar(),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Tweet("..............................".replaceAll(".", "twat ")),
+              ),
+            ),
+          ],
+        ));
   }
 }

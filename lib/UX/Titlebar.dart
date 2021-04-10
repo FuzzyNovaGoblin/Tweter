@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget titleBar() {
-  return AppBar(
+SliverAppBar titleBar() {
+  return SliverAppBar(
     centerTitle: true,
+    floating: true,
     title: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
