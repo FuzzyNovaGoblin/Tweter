@@ -1,4 +1,4 @@
-package com.example.twater
+package com.example.tweter
 
 import io.flutter.embedding.android.FlutterActivity
 

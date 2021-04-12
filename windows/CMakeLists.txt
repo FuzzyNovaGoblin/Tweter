@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(twater LANGUAGES CXX)
+project(tweter LANGUAGES CXX)
 
-set(BINARY_NAME "twater")
+set(BINARY_NAME "tweter")
 
 cmake_policy(SET CMP0063 NEW)
 

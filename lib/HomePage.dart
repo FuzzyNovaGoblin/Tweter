@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:twater/UX/Titlebar.dart';
-import 'package:twater/UX/Tweet.dart';
+import 'package:tweter/UX/Titlebar.dart';
+import 'package:tweter/UX/Tweet.dart';
 
 class HomePage extends StatefulWidget {
   @override

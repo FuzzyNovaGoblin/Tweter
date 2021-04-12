@@ -8,7 +8,7 @@ SliverAppBar titleBar() {
       mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset("assets/fillbird.png", height: 58),
-        Text("twater", style: TextStyle(fontSize: 40)),
+        Text("tweter", style: TextStyle(fontSize: 40)),
       ],
     ),
     flexibleSpace: Container(
