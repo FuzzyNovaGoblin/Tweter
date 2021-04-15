@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
             titleBar(),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => Tweet("..............................".replaceAll(".", "twat ")),
+                (context, index) => Tweet("..............................".replaceAll(".", "twet ")),
               ),
             ),
           ],
