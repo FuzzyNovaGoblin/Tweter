@@ -19,14 +19,13 @@ MaterialApp baseApp = MaterialApp(
       headline3: TextStyle(color: Colors.red),
       headline4: TextStyle(color: Colors.white, fontSize: 24),
       headline5: TextStyle(color: Colors.red,),
-      headline6: TextStyle(color: Colors.red,),
-
+      headline6: TextStyle(color: Colors.black,),
       bodyText1: TextStyle(color: Colors.white),
-      bodyText2: TextStyle(color: Colors.red),
+      bodyText2: TextStyle(color: Colors.black),
       button: TextStyle(color: Colors.red),
       caption: TextStyle(color: Colors.red),
       subtitle1:TextStyle(color: Colors.red),
-      subtitle2:TextStyle(color: Colors.red),
+      subtitle2:TextStyle(color: darkColor, fontSize: 12),
       overline: TextStyle(color: Colors.red),
 
     ),

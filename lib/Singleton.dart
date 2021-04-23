@@ -6,5 +6,5 @@ class Singleton {
 
   String userName = "INSERT USERNAME";
 
-  int uid = -1;
+  int uid = 1;
 }

@@ -5,9 +5,8 @@ import 'package:tweter/data/TweetData.dart';
 import 'dart:convert';
 
 class Tweet extends StatelessWidget {
-  final String text;
   final int pid;
-  const Tweet(this.text, this.pid, {Key key}) : super(key: key);
+  const Tweet(this.pid, {Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,10 +28,25 @@ Widget content(int pid) {
     builder: (context, snap) {
       if (snap.hasData) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(snap.data.uname),
-            Text(snap.data.text),
-            Text(snap.data.time.toLocal().toString()),
+            Row(
+              children: [
+                Text(
+                  snap.data.uname,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                Spacer()
+              ],
+            ),
+            Container(height: 5,),
+            Text(snap.data.text, style: Theme.of(context).textTheme.bodyText2,),
+            Row(
+              children: [
+                Spacer(),
+                Text(snap.data.time.toLocal().toString(), style: Theme.of(context).textTheme.subtitle2,),
+              ],
+            ),
           ],
         );
       } else if (snap.hasError) {
