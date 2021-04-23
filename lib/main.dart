@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tweter/Singleton.dart';
-
 import 'HomePage.dart';
 
 Color mainColor = Color(0xFF6EE6C7);

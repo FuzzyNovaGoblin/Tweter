@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:tweter/data/PostData.dart';
 import 'package:tweter/data/TweetData.dart';
 import 'dart:convert';
 
