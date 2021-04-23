@@ -13,7 +13,10 @@ class MainDrawer extends StatelessWidget {
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
-                gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [Color(0xFF6EE6C7), Color(0xFF050922)]),
+                gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [Color(0xFF6EE6C7), Color(0xFF050922)]),
               ),
               child: Center(
                 child: Text(
@@ -37,6 +40,12 @@ class MainDrawer extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
+            ListTile(
+                leading: Icon(Icons.logout, color: Colors.white),
+                title: Text('Logout'),
+                onTap: () {
+                  Navigator.pop(context);
+                })
           ],
         ),
       ),

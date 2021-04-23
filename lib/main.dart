@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'HomePage.dart';
+import 'LoginPage.dart';
 
 Color mainColor = Color(0xFF6EE6C7);
 Color darkColor = Color(0xFF566573);
 Color darkRed = Color(0xFFA51818);
 
 MaterialApp baseApp = MaterialApp(
-  home: HomePage(),
+  home: LoginPage(),
   theme: ThemeData(
     accentColor: mainColor,
     scaffoldBackgroundColor: darkColor,
