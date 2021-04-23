@@ -4,8 +4,7 @@ class Singleton {
 
   factory Singleton() => _singletonRef;
 
-  String user_name = "INSERT USERNAME";
+  String userName = "INSERT USERNAME";
 
-  // int UID
+  int uid = -1;
 }
-
