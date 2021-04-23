@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 import 'package:tweter/Singleton.dart';
@@ -7,8 +5,8 @@ import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/ReTweet.dart';
 import 'package:tweter/UX/Titlebar.dart';
 import 'package:tweter/UX/Tweet.dart';
+import 'package:tweter/data/DataFetchers.dart';
 import 'package:tweter/data/PostData.dart';
-import 'package:tweter/data/TweetData.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,22 +49,5 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
-  }
-}
-
-Future<List<Tuple2<int, PostType>>> getTimeLineData(int uid) async {
-  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/timeline/$uid"));
-  if (getData.statusCode == 200) {
-    Map<String, dynamic> jsonData = jsonDecode(getData.body);
-    List<Map<String, dynamic>> posts = (jsonData['posts'] as List<dynamic>).map((item) => item as Map<String, dynamic>).toList();
-
-    List<Tuple2<int, PostType>> returnData = [];
-    for (int i = 0; i < posts.length; i++) {
-      returnData.add(Tuple2(posts[i]['PID'], PostType.values[posts[i]['post_type_id']]));
-    }
-    return returnData;
-  } else {
-    print("here error");
-    throw Exception("whaaaa");
   }
 }
