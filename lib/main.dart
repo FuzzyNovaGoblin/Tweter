@@ -1,31 +1,38 @@
 import 'package:flutter/material.dart';
-import 'LoginPage.dart';
-import 'ProfilePage.dart';
+import 'package:tweter/Pages/HomePage.dart';
+import 'package:tweter/Singleton.dart';
+import 'Pages/LoginPage.dart';
 
-Color mainColor = Color(0xFF6EE6C7);
-Color darkColor = Color(0xFF566573);
-Color darkRed = Color(0xFFA51818);
 
-MaterialApp baseApp = MaterialApp(
-  home: ProfilePage(),
-  theme: ThemeData(
-    accentColor: mainColor,
-    cardColor: Colors.white70,
+// ---------------------------------Theme Data---------------------------------
+const Color darkerMain = Color(0xFF34b396);
+const Color mainColor = Color(0xFF6EE6C7);
+const Color darkColor = Color(0xFF566573);
+const Color darkRed = Color(0xFFA51818);
+
+Gradient primaryGradient = LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [mainColor, darkColor]);
+
+ThemeData _themeData = ThemeData(
+    accentColor: darkColor,
+    primaryColor: darkerMain,
     scaffoldBackgroundColor: darkColor,
+    cardColor: Colors.white70,
+    backgroundColor: darkColor,
+    buttonColor: mainColor,
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: Colors.cyan,
+      accentColor: mainColor,
+      backgroundColor: darkColor,
+      cardColor: Colors.white70,
+    ),
     errorColor: darkRed,
     textTheme: TextTheme(
-      headline1: TextStyle(
-        color: Colors.red,
-      ),
+      headline1: TextStyle(color: Colors.red),
       headline2: TextStyle(color: Colors.white),
-      headline3: TextStyle(color: Colors.red),
+      headline3: TextStyle(color: Colors.white),
       headline4: TextStyle(color: Colors.white, fontSize: 24),
-      headline5: TextStyle(
-        color: Colors.red,
-      ),
-      headline6: TextStyle(
-        color: Colors.black,
-      ),
+      headline5: TextStyle(color: Colors.red),
+      headline6: TextStyle(color: Colors.black),
       bodyText1: TextStyle(color: Colors.white),
       bodyText2: TextStyle(color: Colors.black),
       button: TextStyle(color: Colors.red),
@@ -34,13 +41,22 @@ MaterialApp baseApp = MaterialApp(
       subtitle2: TextStyle(color: darkColor, fontSize: 12),
       overline: TextStyle(color: Colors.red),
     ),
-  ),
+  );
+
+// ----------------------------------------------------------------------------
+
+
+MaterialApp baseApp = MaterialApp(
+
+
+  theme: _themeData,
+  initialRoute: Singleton().timeLineRoute,
+  routes: {
+    Singleton().loginRoute: (context)=>LoginPage(),
+    Singleton().timeLineRoute: (context)=>HomePage(),
+  },
 );
 
-Gradient primaryGradient = LinearGradient(
-    begin: Alignment.bottomLeft,
-    end: Alignment.topRight,
-    colors: [mainColor, darkColor]);
 
 void main() {
   runApp(baseApp);
