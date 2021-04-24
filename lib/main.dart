@@ -48,7 +48,6 @@ ThemeData _themeData = ThemeData(
 
 MaterialApp baseApp = MaterialApp(
   theme: _themeData,
-  initialRoute: Singleton().timeLineRoute,
   onGenerateRoute: (settings) {
     if (settings.name == Singleton().loginRoute) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
