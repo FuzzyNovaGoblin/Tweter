@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tweter/Pages/HomePage.dart';
+import 'package:tweter/Pages/ProfilePage.dart';
 import 'package:tweter/Singleton.dart';
 import 'Pages/LoginPage.dart';
-
 
 // ---------------------------------Theme Data---------------------------------
 const Color darkerMain = Color(0xFF34b396);
@@ -13,50 +13,56 @@ const Color darkRed = Color(0xFFA51818);
 Gradient primaryGradient = LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [mainColor, darkColor]);
 
 ThemeData _themeData = ThemeData(
-    accentColor: darkColor,
-    primaryColor: darkerMain,
-    scaffoldBackgroundColor: darkColor,
-    cardColor: Colors.white70,
+  accentColor: darkColor,
+  iconTheme: IconThemeData(color: Colors.white),
+  primaryColor: darkerMain,
+  scaffoldBackgroundColor: darkColor,
+  cardColor: Colors.white70,
+  backgroundColor: darkColor,
+  buttonColor: mainColor,
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.cyan,
+    accentColor: mainColor,
     backgroundColor: darkColor,
-    buttonColor: mainColor,
-    colorScheme: ColorScheme.fromSwatch(
-      primarySwatch: Colors.cyan,
-      accentColor: mainColor,
-      backgroundColor: darkColor,
-      cardColor: Colors.white70,
-    ),
-    errorColor: darkRed,
-    textTheme: TextTheme(
-      headline1: TextStyle(color: Colors.red),
-      headline2: TextStyle(color: Colors.white),
-      headline3: TextStyle(color: Colors.white),
-      headline4: TextStyle(color: Colors.white, fontSize: 24),
-      headline5: TextStyle(color: Colors.red),
-      headline6: TextStyle(color: Colors.black),
-      bodyText1: TextStyle(color: Colors.white),
-      bodyText2: TextStyle(color: Colors.black),
-      button: TextStyle(color: Colors.red),
-      caption: TextStyle(color: Colors.red),
-      subtitle1: TextStyle(color: Colors.red),
-      subtitle2: TextStyle(color: darkColor, fontSize: 12),
-      overline: TextStyle(color: Colors.red),
-    ),
-  );
+    cardColor: Colors.white70,
+  ),
+  errorColor: darkRed,
+  textTheme: TextTheme(
+    headline1: TextStyle(color: Colors.red),
+    headline2: TextStyle(color: Colors.white),
+    headline3: TextStyle(color: Colors.white),
+    headline4: TextStyle(color: Colors.white, fontSize: 24),
+    headline5: TextStyle(color: Colors.red),
+    headline6: TextStyle(color: Colors.black),
+    bodyText1: TextStyle(color: Colors.white),
+    bodyText2: TextStyle(color: Colors.black),
+    button: TextStyle(color: Colors.red),
+    caption: TextStyle(color: Colors.red),
+    subtitle1: TextStyle(color: Colors.black),
+    subtitle2: TextStyle(color: darkColor, fontSize: 12),
+    overline: TextStyle(color: Colors.red),
+  ),
+);
 
 // ----------------------------------------------------------------------------
 
-
 MaterialApp baseApp = MaterialApp(
-
-
   theme: _themeData,
   initialRoute: Singleton().timeLineRoute,
-  routes: {
-    Singleton().loginRoute: (context)=>LoginPage(),
-    Singleton().timeLineRoute: (context)=>HomePage(),
+  onGenerateRoute: (settings) {
+    if (settings.name == Singleton().loginRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
+    if (settings.name == Singleton().timeLineRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => HomePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
+    if (settings.name == Singleton().profileRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => ProfilePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
+
+    return MaterialPageRoute(builder: (_) => LoginPage());
   },
 );
-
 
 void main() {
   runApp(baseApp);
