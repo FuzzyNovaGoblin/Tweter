@@ -7,16 +7,16 @@ import 'package:tweter/Singleton.dart';
 import 'package:tweter/data/PostData.dart';
 import 'package:tweter/data/TweetData.dart';
 
-class DevHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-  }
-}
+// class DevHttpOverrides extends HttpOverrides {
+//   @override
+//   HttpClient createHttpClient(SecurityContext context) {
+//     return super.createHttpClient(context)
+//       ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+//   }
+// }
 
 Future<List<Tuple2<int, PostType>>> getTimeLineData(int uid) async {
-  final getData = await http.get(Uri.https("23.254.244.168", "/api/sql/timeline/$uid"));
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/timeline/$uid"));
   if (getData.statusCode == 200) {
     Map<String, dynamic> jsonData = jsonDecode(getData.body);
     List<Map<String, dynamic>> posts = (jsonData['posts'] as List<dynamic>).map((item) => item as Map<String, dynamic>).toList();
@@ -33,7 +33,7 @@ Future<List<Tuple2<int, PostType>>> getTimeLineData(int uid) async {
 }
 
 Future<TweetData> fetchTweetData(int pid) async {
-  final getData = await http.get(Uri.https("23.254.244.168", "/api/sql/tweet/$pid"));
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/tweet/$pid"));
   if (getData.statusCode == 200) {
     return TweetData.fromJson(pid, jsonDecode(getData.body)[0]);
   } else {
@@ -49,7 +49,7 @@ Future<bool> authenticate(String name, String pass) async {
   for (int i = 0; i < chars.length; i++) {
     pass += String.fromCharCode(chars[i] + 1);
   }
-  final getData = await http.get(Uri.https("23.254.244.168", "/api/sql/auth/$name/$pass"));
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/auth/$name/$pass"));
   if (getData.statusCode == 200) {
     Singleton().userName = name;
     Singleton().uid = jsonDecode(getData.body);
@@ -66,7 +66,7 @@ Future<bool> addUser(String name, String pass) async {
   for (int i = 0; i < chars.length; i++) {
     pass += String.fromCharCode(chars[i] + 1);
   }
-  final getData = await http.post(Uri.https("23.254.244.168", "/api/sql/newuser"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UNAME": name, "UFN": "", "ULN": "", "pass_hash": pass, "email": ""}));
+  final getData = await http.post(Uri.http("23.254.244.168", "/api/sql/newuser"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UNAME": name, "UFN": "", "ULN": "", "pass_hash": pass, "email": ""}));
 
   if (getData.statusCode == 201) {
     print(jsonDecode(getData.body));
@@ -80,7 +80,7 @@ Future<bool> addUser(String name, String pass) async {
 }
 
 Future<List<Tuple2<String, int>>> getAllUsers() async {
-  final getData = await http.get(Uri.https("23.254.244.168", "/api/sql/allusers"));
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/allusers"));
   final jsonData = jsonDecode(getData.body);
   List<Tuple2<String, int>> retData = [];
   for (int i = 0; i < jsonData.length; i++) {
@@ -90,17 +90,17 @@ Future<List<Tuple2<String, int>>> getAllUsers() async {
 }
 
 Future follow(int uid) async {
-  await http.post(Uri.https("23.254.244.168", "/api/sql/follow"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"follower_id": Singleton().uid, "followed_id": uid}));
+  await http.post(Uri.http("23.254.244.168", "/api/sql/follow"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"follower_id": Singleton().uid, "followed_id": uid}));
   Singleton().followingIds.add(uid);
 }
 
 Future unfollow(int uid) async {
-  await http.post(Uri.https("23.254.244.168", "/api/sql/unfollow"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"follower_id": Singleton().uid, "followed_id": uid}));
+  await http.post(Uri.http("23.254.244.168", "/api/sql/unfollow"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"follower_id": Singleton().uid, "followed_id": uid}));
   Singleton().followingIds.remove(uid);
 }
 
 Future getFollowingIds() async {
-  final getData = await http.get(Uri.https("23.254.244.168", "/api/sql/followers/${Singleton().uid}"));
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/followers/${Singleton().uid}"));
   final List<dynamic> jsonData = jsonDecode(getData.body);
   print(jsonData);
   Singleton().followingIds.clear();
@@ -108,5 +108,5 @@ Future getFollowingIds() async {
 }
 
 Future makeTweet(String text) async {
-  await http.post(Uri.https("23.254.244.168", "/api/sql/tweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "text": text}));
+  await http.post(Uri.http("23.254.244.168", "/api/sql/tweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "text": text}));
 }

@@ -75,6 +75,6 @@ MaterialApp baseApp = MaterialApp(
 );
 
 void main() {
-  HttpOverrides.global = DevHttpOverrides();
+  // HttpOverrides.global = DevHttpOverrides();
   runApp(baseApp);
 }

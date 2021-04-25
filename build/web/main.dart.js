@@ -14275,7 +14275,7 @@ this.$ti=c},
 adS:function(a){var s=0,r=P.a8(t.A2),q,p,o,n,m,l
 var $async$adS=P.a4(function(b,c){if(b===1)return P.a5(c,r)
 while(true)switch(s){case 0:s=3
-return P.a2(G.Qu(P.lE("https","23.254.244.168","/api/sql/timeline/"+H.b(a),null)),$async$adS)
+return P.a2(G.Qu(P.lE("http","23.254.244.168","/api/sql/timeline/"+H.b(a),null)),$async$adS)
 case 3:l=c
 if(l.b===200){p=J.oe(t.TN.a(J.at(C.ab.jZ(0,B.ta(U.t5(l.e).c.a.h(0,"charset")).cF(0,l.x),null),"posts")),new S.adT(),t.fs).fn(0)
 o=H.c([],t.kx)
@@ -14288,7 +14288,7 @@ return P.a7($async$adS,r)},
 adB:function(a){var s=0,r=P.a8(t.UP),q,p,o,n,m,l
 var $async$adB=P.a4(function(b,c){if(b===1)return P.a5(c,r)
 while(true)switch(s){case 0:s=3
-return P.a2(G.Qu(P.lE("https","23.254.244.168","/api/sql/tweet/"+H.b(a),null)),$async$adB)
+return P.a2(G.Qu(P.lE("http","23.254.244.168","/api/sql/tweet/"+H.b(a),null)),$async$adB)
 case 3:l=c
 if(l.b===200){p=J.at(C.ab.jZ(0,B.ta(U.t5(l.e).c.a.h(0,"charset")).cF(0,l.x),null),0)
 o=J.aq(p)
@@ -14303,7 +14303,7 @@ adf:function(a,b){var s=0,r=P.a8(t.yq),q,p,o,n,m
 var $async$adf=P.a4(function(c,d){if(c===1)return P.a5(d,r)
 while(true)switch(s){case 0:for(p=b.length,o="",n=0;n<p;++n)o+=H.aR(C.c.Y(b,n)+1)
 s=3
-return P.a2(G.Qu(P.lE("https","23.254.244.168","/api/sql/auth/"+H.b(a)+"/"+o,null)),$async$adf)
+return P.a2(G.Qu(P.lE("http","23.254.244.168","/api/sql/auth/"+H.b(a)+"/"+o,null)),$async$adf)
 case 3:m=d
 if(m.b===200){p=$.iH()
 p.a=a
@@ -14317,7 +14317,7 @@ return P.a7($async$adf,r)},
 ade:function(a,b){var s=0,r=P.a8(t.yq),q,p,o,n,m,l,k
 var $async$ade=P.a4(function(c,d){if(c===1)return P.a5(d,r)
 while(true)switch(s){case 0:for(p=b.length,o="",n=0;n<p;++n)o+=H.aR(C.c.Y(b,n)+1)
-p=P.lE("https","23.254.244.168","/api/sql/newuser",null)
+p=P.lE("http","23.254.244.168","/api/sql/newuser",null)
 m=t.bD
 l=P.aB(["Content-Type","application/json"],m,m)
 s=3
@@ -14341,7 +14341,7 @@ return P.a7($async$ade,r)},
 adL:function(){var s=0,r=P.a8(t.FZ),q,p,o,n,m,l,k
 var $async$adL=P.a4(function(a,b){if(a===1)return P.a5(b,r)
 while(true)switch(s){case 0:s=3
-return P.a2(G.Qu(P.lE("https","23.254.244.168","/api/sql/allusers",null)),$async$adL)
+return P.a2(G.Qu(P.lE("http","23.254.244.168","/api/sql/allusers",null)),$async$adL)
 case 3:m=b
 l=C.ab.jZ(0,B.ta(U.t5(m.e).c.a.h(0,"charset")).cF(0,m.x),null)
 k=H.c([],t.jQ)
@@ -14353,7 +14353,7 @@ case 1:return P.a6(q,r)}})
 return P.a7($async$adL,r)},
 adH:function(a){var s=0,r=P.a8(t.z),q,p,o,n
 var $async$adH=P.a4(function(b,c){if(b===1)return P.a5(c,r)
-while(true)switch(s){case 0:q=P.lE("https","23.254.244.168","/api/sql/follow",null)
+while(true)switch(s){case 0:q=P.lE("http","23.254.244.168","/api/sql/follow",null)
 p=t.bD
 o=P.aB(["Content-Type","application/json"],p,p)
 n=$.iH()
@@ -14364,7 +14364,7 @@ return P.a6(null,r)}})
 return P.a7($async$adH,r)},
 aeu:function(a){var s=0,r=P.a8(t.z),q,p,o,n
 var $async$aeu=P.a4(function(b,c){if(b===1)return P.a5(c,r)
-while(true)switch(s){case 0:q=P.lE("https","23.254.244.168","/api/sql/unfollow",null)
+while(true)switch(s){case 0:q=P.lE("http","23.254.244.168","/api/sql/unfollow",null)
 p=t.bD
 o=P.aB(["Content-Type","application/json"],p,p)
 n=$.iH()
@@ -14377,7 +14377,7 @@ adO:function(){var s=0,r=P.a8(t.z),q,p,o
 var $async$adO=P.a4(function(a,b){if(a===1)return P.a5(b,r)
 while(true)switch(s){case 0:q=$.iH()
 s=2
-return P.a2(G.Qu(P.lE("https","23.254.244.168","/api/sql/followers/"+H.b(q.b),null)),$async$adO)
+return P.a2(G.Qu(P.lE("http","23.254.244.168","/api/sql/followers/"+H.b(q.b),null)),$async$adO)
 case 2:p=b
 o=C.ab.jZ(0,B.ta(U.t5(p.e).c.a.h(0,"charset")).cF(0,p.x),null)
 P.hK(o)
@@ -14388,7 +14388,7 @@ return P.a6(null,r)}})
 return P.a7($async$adO,r)},
 aee:function(a){var s=0,r=P.a8(t.z),q,p,o
 var $async$aee=P.a4(function(b,c){if(b===1)return P.a5(c,r)
-while(true)switch(s){case 0:q=P.lE("https","23.254.244.168","/api/sql/tweet",null)
+while(true)switch(s){case 0:q=P.lE("http","23.254.244.168","/api/sql/tweet",null)
 p=t.bD
 o=P.aB(["Content-Type","application/json"],p,p)
 s=2
