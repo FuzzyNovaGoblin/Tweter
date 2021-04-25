@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
       },
       onSignup: (LoginData data) async{
         bool logWork = await addUser(data.name, data.password);
-        if (logWork) Navigator.pushNamed(context, Singleton.peopleRoute);
+        if (logWork) Navigator.pushNamed(context, Singleton.timeLineRoute);
 
         return "Failed to sign up";
       },
