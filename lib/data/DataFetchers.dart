@@ -72,8 +72,34 @@ Future<bool> addUser(String name, String pass) async {
 }
 
 Future<List<Tuple2<String, int>>> getAllUsers() async {
-  final getData = await http.post(Uri.http("23.254.244.168", "/api/sql/allusers"));
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/allusers"));
   final jsonData = jsonDecode(getData.body);
+  List<Tuple2<String, int>> retData = [];
+  for (int i = 0; i < jsonData.length; i++) {
+    retData.add(Tuple2(jsonData[i]['UNAME'], jsonData[i]['UID']));
+  }
+  return retData;
+}
+
+Future follow(int uid) async {
+  await http.post(Uri.http("23.254.244.168", "/api/sql/follow"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"follower_id": Singleton().uid, "followed_id": uid}));
+  Singleton().followingIds.add(uid);
+}
+
+Future unfollow(int uid) async {
+  await http.post(Uri.http("23.254.244.168", "/api/sql/unfollow"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"follower_id": Singleton().uid, "followed_id": uid}));
+  Singleton().followingIds.remove(uid);
+}
+
+Future getFollowingIds() async {
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/followers/${Singleton().uid}"));
+  final List<dynamic> jsonData = jsonDecode(getData.body);
   print(jsonData);
-  return [];
+  Singleton().followingIds.clear();
+  Singleton().followingIds.addAll(jsonData.map((i) => i as int).toList());
+
+  // List<Tuple2<String, int>> retData = [];
+  // for (int i = 0; i < jsonData.length; i++) {
+  //   retData.add(Tuple2(jsonData[i]['UNAME'], jsonData[i]['UID']));
+  // }
 }

@@ -33,7 +33,7 @@ ThemeData _themeData = ThemeData(
     headline2: TextStyle(color: Colors.white),
     headline3: TextStyle(color: Colors.white),
     headline4: TextStyle(color: Colors.white, fontSize: 24),
-    headline5: TextStyle(color: Colors.red),
+    headline5: TextStyle(color: Colors.black),
     headline6: TextStyle(color: Colors.black),
     bodyText1: TextStyle(color: Colors.white),
     bodyText2: TextStyle(color: Colors.black),

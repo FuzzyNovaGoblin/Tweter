@@ -37,12 +37,19 @@ class MainDrawer extends StatelessWidget {
               },
             ),
             ListTile(
+                leading: Icon(Icons.people, color: Colors.white),
+                title: Text('People'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, Singleton.peopleRoute);
+                }),
+            ListTile(
                 leading: Icon(Icons.logout, color: Colors.white),
                 title: Text('Logout'),
                 onTap: () {
                   Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton.loginRoute);
-                })
+                  Navigator.pushNamed(context, Singleton.loginRoute);
+                }),
           ],
         ),
       ),
