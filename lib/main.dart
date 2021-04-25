@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:tweter/Pages/HomePage.dart';
+import 'package:tweter/Pages/LoginPage.dart';
+import 'package:tweter/Pages/PeoplePage.dart';
+import 'package:tweter/Pages/TimeLinePage.dart';
 import 'package:tweter/Pages/ProfilePage.dart';
 import 'package:tweter/Singleton.dart';
-import 'Pages/LoginPage.dart';
+import 'package:tweter/data/DataFetchers.dart';
 
 // ---------------------------------Theme Data---------------------------------
 const Color darkerMain = Color(0xFF34b396);
@@ -32,7 +36,7 @@ ThemeData _themeData = ThemeData(
     headline2: TextStyle(color: Colors.white),
     headline3: TextStyle(color: Colors.white),
     headline4: TextStyle(color: Colors.white, fontSize: 24),
-    headline5: TextStyle(color: Colors.red),
+    headline5: TextStyle(color: Colors.black),
     headline6: TextStyle(color: Colors.black),
     bodyText1: TextStyle(color: Colors.white),
     bodyText2: TextStyle(color: Colors.black),
@@ -49,20 +53,28 @@ ThemeData _themeData = ThemeData(
 MaterialApp baseApp = MaterialApp(
   theme: _themeData,
   onGenerateRoute: (settings) {
-    if (settings.name == Singleton().loginRoute) {
+    if (Singleton().uid < 1) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
-    if (settings.name == Singleton().timeLineRoute) {
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => HomePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+
+    if (settings.name == Singleton.loginRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
-    if (settings.name == Singleton().profileRoute) {
+    if (settings.name == Singleton.timeLineRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => TimeLinePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
+    if (settings.name == Singleton.profileRoute) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => ProfilePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
+    if (settings.name == Singleton.peopleRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => PeoplePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
 
-    return MaterialPageRoute(builder: (_) => LoginPage());
+    return PageRouteBuilder(pageBuilder: (_, __, ___) => TimeLinePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
   },
 );
 
 void main() {
+  HttpOverrides.global = DevHttpOverrides();
   runApp(baseApp);
 }

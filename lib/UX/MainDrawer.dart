@@ -25,7 +25,7 @@ class MainDrawer extends StatelessWidget {
               title: Text('Profile'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton().profileRoute);
+                Navigator.pushNamed(context, Singleton.profileRoute);
               },
             ),
             ListTile(
@@ -33,16 +33,23 @@ class MainDrawer extends StatelessWidget {
               title: Text('Feed'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton().timeLineRoute);
+                Navigator.pushNamed(context, Singleton.timeLineRoute);
               },
             ),
+            ListTile(
+                leading: Icon(Icons.people, color: Colors.white),
+                title: Text('People'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, Singleton.peopleRoute);
+                }),
             ListTile(
                 leading: Icon(Icons.logout, color: Colors.white),
                 title: Text('Logout'),
                 onTap: () {
                   Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton().loginRoute);
-                })
+                  Navigator.pushNamed(context, Singleton.loginRoute);
+                }),
           ],
         ),
       ),

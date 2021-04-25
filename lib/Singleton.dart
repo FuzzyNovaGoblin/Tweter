@@ -6,9 +6,11 @@ class Singleton {
 
   String userName = "INSERT USERNAME";
   int uid = -1;
+  List<int> followingIds= [];
 
   // -----Routes-----
-  String timeLineRoute = "timeline";
-  String loginRoute = "login";
-  String profileRoute = "profile";
+  static const String timeLineRoute = "/timeline";
+  static const String loginRoute = "/login";
+  static const String profileRoute = "/profile";
+  static const String peopleRoute = "/people";
 }

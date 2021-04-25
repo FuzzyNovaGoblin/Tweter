@@ -15,13 +15,13 @@ class LoginPage extends StatelessWidget {
       messages: LoginMessages(usernameHint: "Username"),
       onLogin: (LoginData data) async {
         bool logWork = await authenticate(data.name, data.password);
-        if (logWork) Navigator.pushNamed(context, Singleton().timeLineRoute);
+        if (logWork) Navigator.pushNamed(context, Singleton.timeLineRoute);
 
         return "Failed to log in";
       },
       onSignup: (LoginData data) async{
         bool logWork = await addUser(data.name, data.password);
-        if (logWork) Navigator.pushNamed(context, Singleton().timeLineRoute);
+        if (logWork) Navigator.pushNamed(context, Singleton.peopleRoute);
 
         return "Failed to sign up";
       },

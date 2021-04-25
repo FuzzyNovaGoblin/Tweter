@@ -53,8 +53,8 @@ Widget hasDataContent(BuildContext context, TweetData data) {
         style: Theme.of(context).textTheme.bodyText2,
       ),
       Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Spacer(),
           Text(
             data.time.toLocal().toString(),
             style: Theme.of(context).textTheme.subtitle2,
