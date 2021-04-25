@@ -16,11 +16,7 @@ class _PeoplePageState extends State<PeoplePage> {
     getFollowingIds();
     return Scaffold(
       drawer: MainDrawer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          getAllUsers();
-        },
-      ),
+    
       appBar: titleAppBar(context),
       body: FutureBuilder(
           future: getAllUsers(),
