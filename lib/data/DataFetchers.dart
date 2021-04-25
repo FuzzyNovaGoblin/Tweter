@@ -97,9 +97,8 @@ Future getFollowingIds() async {
   print(jsonData);
   Singleton().followingIds.clear();
   Singleton().followingIds.addAll(jsonData.map((i) => i as int).toList());
+}
 
-  // List<Tuple2<String, int>> retData = [];
-  // for (int i = 0; i < jsonData.length; i++) {
-  //   retData.add(Tuple2(jsonData[i]['UNAME'], jsonData[i]['UID']));
-  // }
+Future makeTweet(String text) async {
+  await http.post(Uri.http("23.254.244.168", "/api/sql/tweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "text": text}));
 }
