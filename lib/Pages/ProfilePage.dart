@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     alignment: Alignment.centerLeft,
                     constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
                     child: Image.asset('assets/bird.png'),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -9,12 +9,12 @@ import 'package:tweter/UX/Tweet.dart';
 import 'package:tweter/data/DataFetchers.dart';
 import 'package:tweter/data/PostData.dart';
 
-class HomePage extends StatefulWidget {
+class TimeLinePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _TimeLinePageState createState() => _TimeLinePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TimeLinePageState extends State<TimeLinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
