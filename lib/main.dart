@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:tweter/Pages/LoginPage.dart';
 import 'package:tweter/Pages/PeoplePage.dart';
 import 'package:tweter/Pages/TimeLinePage.dart';
 import 'package:tweter/Pages/ProfilePage.dart';
 import 'package:tweter/Singleton.dart';
+import 'package:tweter/data/DataFetchers.dart';
 
 // ---------------------------------Theme Data---------------------------------
 const Color darkerMain = Color(0xFF34b396);
@@ -72,5 +75,6 @@ MaterialApp baseApp = MaterialApp(
 );
 
 void main() {
+  HttpOverrides.global = DevHttpOverrides();
   runApp(baseApp);
 }
