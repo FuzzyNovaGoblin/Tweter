@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 class ComposeTweet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    TextEditingController tweetTExtController = TextEditingController();
     return SimpleDialog(
       contentPadding: EdgeInsets.all(12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18),
       ),
       children: [
-        Container(constraints: BoxConstraints(maxWidth: 503, maxHeight: 96), child: SizedBox.expand(child: TextField(
-          autofocus: true,
-          decoration: InputDecoration(
-            border: InputBorder.none
-          ),
-        ))),
+        Container(
+            constraints: BoxConstraints(maxWidth: 503, maxHeight: 96),
+            child: SizedBox.expand(
+                child: TextField(
+              autofocus: true,
+              decoration: InputDecoration(border: InputBorder.none),
+            ))),
         Container(
           height: 56,
           width: 600,

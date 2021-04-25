@@ -16,7 +16,7 @@ class _PeoplePageState extends State<PeoplePage> {
     getFollowingIds();
     return Scaffold(
       drawer: MainDrawer(),
-    
+
       appBar: titleAppBar(context),
       body: FutureBuilder(
           future: getAllUsers(),
@@ -58,9 +58,12 @@ class UserCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    data.item1,
-                    style: Theme.of(context).textTheme.headline5,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      data.item1,
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
                   ),
                   FollowButton(data.item2)
                 ],
