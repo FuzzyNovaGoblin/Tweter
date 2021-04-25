@@ -70,3 +70,10 @@ Future<bool> addUser(String name, String pass) async {
 
   return Singleton().uid != -1;
 }
+
+Future<List<Tuple2<String, int>>> getAllUsers() async {
+  final getData = await http.post(Uri.http("23.254.244.168", "/api/sql/allusers"));
+  final jsonData = jsonDecode(getData.body);
+  print(jsonData);
+  return [];
+}

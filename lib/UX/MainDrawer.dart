@@ -25,7 +25,7 @@ class MainDrawer extends StatelessWidget {
               title: Text('Profile'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton().profileRoute);
+                Navigator.pushNamed(context, Singleton.profileRoute);
               },
             ),
             ListTile(
@@ -33,7 +33,7 @@ class MainDrawer extends StatelessWidget {
               title: Text('Feed'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton().timeLineRoute);
+                Navigator.pushNamed(context, Singleton.timeLineRoute);
               },
             ),
             ListTile(
@@ -41,7 +41,7 @@ class MainDrawer extends StatelessWidget {
                 title: Text('Logout'),
                 onTap: () {
                   Navigator.pop(context);
-                Navigator.pushNamed(context, Singleton().loginRoute);
+                Navigator.pushNamed(context, Singleton.loginRoute);
                 })
           ],
         ),

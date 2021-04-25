@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tweter/Pages/LoginPage.dart';
+import 'package:tweter/Pages/PeoplePage.dart';
 import 'package:tweter/Pages/TimeLinePage.dart';
 import 'package:tweter/Pages/ProfilePage.dart';
 import 'package:tweter/Singleton.dart';
@@ -49,17 +50,24 @@ ThemeData _themeData = ThemeData(
 MaterialApp baseApp = MaterialApp(
   theme: _themeData,
   onGenerateRoute: (settings) {
-    if (settings.name == Singleton().loginRoute) {
+    if (Singleton().uid < 1) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
-    if (settings.name == Singleton().timeLineRoute) {
+
+    if (settings.name == Singleton.loginRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
+    if (settings.name == Singleton.timeLineRoute) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => TimeLinePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
-    if (settings.name == Singleton().profileRoute) {
+    if (settings.name == Singleton.profileRoute) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => ProfilePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
+    if (settings.name == Singleton.peopleRoute) {
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => PeoplePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+    }
 
-    return MaterialPageRoute(builder: (_) => LoginPage());
+    return PageRouteBuilder(pageBuilder: (_, __, ___) => TimeLinePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
   },
 );
 

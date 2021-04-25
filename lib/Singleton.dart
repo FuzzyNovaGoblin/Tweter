@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Singleton {
   static final Singleton _singletonRef = Singleton._internal();
   Singleton._internal();
@@ -8,7 +10,14 @@ class Singleton {
   int uid = -1;
 
   // -----Routes-----
-  String timeLineRoute = "timeline";
-  String loginRoute = "login";
-  String profileRoute = "profile";
+  static const String timeLineRoute = "/timeline";
+  static const String loginRoute = "/login";
+  static const String profileRoute = "/profile";
+  static const String peopleRoute = "/people";
+
+  // void userCheck(context) {
+  //   if (uid < 1) {
+  //     Navigator.pushNamed(context, loginRoute);
+  //   }
+  // }
 }
