@@ -5,6 +5,12 @@ class Singleton {
   factory Singleton() => _singletonRef;
 
   String userName = "INSERT USERNAME";
+  int uid = -1;
+  List<int> followingIds= [];
 
-  int uid = 1;
+  // -----Routes-----
+  static const String timeLineRoute = "/timeline";
+  static const String loginRoute = "/login";
+  static const String profileRoute = "/profile";
+  static const String peopleRoute = "/people";
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../Singleton.dart';
+import 'package:tweter/main.dart' as base;
+import 'package:tweter/Singleton.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -11,13 +11,7 @@ class MainDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                gradient: LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: [Color(0xFF6EE6C7), Color(0xFF050922)]),
-              ),
+              decoration: BoxDecoration(gradient: base.primaryGradient),
               child: Center(
                 child: Text(
                   Singleton().userName,
@@ -31,6 +25,7 @@ class MainDrawer extends StatelessWidget {
               title: Text('Profile'),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.pushNamed(context, Singleton.profileRoute);
               },
             ),
             ListTile(
@@ -38,14 +33,23 @@ class MainDrawer extends StatelessWidget {
               title: Text('Feed'),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.pushNamed(context, Singleton.timeLineRoute);
               },
             ),
+            ListTile(
+                leading: Icon(Icons.people, color: Colors.white),
+                title: Text('People'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, Singleton.peopleRoute);
+                }),
             ListTile(
                 leading: Icon(Icons.logout, color: Colors.white),
                 title: Text('Logout'),
                 onTap: () {
                   Navigator.pop(context);
-                })
+                  Navigator.pushNamed(context, Singleton.loginRoute);
+                }),
           ],
         ),
       ),
