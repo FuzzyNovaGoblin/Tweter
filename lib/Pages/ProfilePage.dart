@@ -49,9 +49,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     // GPG TEST PLEASE WORK
                     padding: const EdgeInsets.only(left: 20)
                   ),
-                  Container(
-                    child: Text(),
-                  ),
                 ],
               ),
             ),
