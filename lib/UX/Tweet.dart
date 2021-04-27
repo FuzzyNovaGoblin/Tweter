@@ -16,7 +16,10 @@ class Tweet extends StatelessWidget {
             child: GestureDetector(
               onLongPress: () => _retweet(context, pid),
               onSecondaryTap: () => _retweet(context, pid),
-              child: Card(child: content(pid)),
+              child: Card(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: content(pid),
+              )),
             ),
           ),
         ),
@@ -32,18 +35,18 @@ void _retweet(BuildContext context, int pid) {
             content: Text("RETWEET?"),
             actions: [
               TextButton(
-                  child: Text(
-                    "cancel",
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    makeReTweet(pid);
-                  }),
-              TextButton(
-                child: Text("retweet"),
+                child: Text(
+                  "cancel",
+                  style: TextStyle(color: Colors.black87),
+                ),
                 onPressed: () => Navigator.pop(context),
               ),
+              TextButton(
+                  child: Text("retweet"),
+                  onPressed: () {
+                    makeReTweet(pid);
+                    Navigator.pop(context);
+                  }),
             ],
           ));
 }
