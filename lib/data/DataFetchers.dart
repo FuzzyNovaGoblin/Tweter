@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:tuple/tuple.dart';
 import 'package:tweter/Singleton.dart';
 import 'package:tweter/data/PostData.dart';
+import 'package:tweter/data/ReTweetData.dart';
 import 'package:tweter/data/TweetData.dart';
 
 // class DevHttpOverrides extends HttpOverrides {
@@ -36,6 +36,16 @@ Future<TweetData> fetchTweetData(int pid) async {
   final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/tweet/$pid"));
   if (getData.statusCode == 200) {
     return TweetData.fromJson(pid, jsonDecode(getData.body)[0]);
+  } else {
+    print("here error");
+    throw Exception();
+  }
+}
+
+Future<ReTweetData> fetchReTweetData(int pid) async {
+  final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/retweet/$pid"));
+  if (getData.statusCode == 200) {
+    return ReTweetData.fromJson(pid, jsonDecode(getData.body)[0]);
   } else {
     print("here error");
     throw Exception();
@@ -109,4 +119,9 @@ Future getFollowingIds() async {
 
 Future makeTweet(String text) async {
   await http.post(Uri.http("23.254.244.168", "/api/sql/tweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "text": text}));
+}
+
+Future makeReTweet(int pid) async {
+  print("here");
+  await http.post(Uri.http("23.254.244.168", "/api/sql/retweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "original_post_id": pid}));
 }

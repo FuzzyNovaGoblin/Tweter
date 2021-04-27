@@ -16,19 +16,21 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            constraints: BoxConstraints(maxWidth: 598),
-            alignment: Alignment.center,
-            // color: Theme.of(context).accentColor,
-            child: Card(
-              child: ListView(
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
-                    child: Image.asset('assets/bird.png'),
-                  ),
-                ],
+          Flexible(
+                      child: Container(
+              constraints: BoxConstraints(maxWidth: 598),
+              alignment: Alignment.center,
+              // color: Theme.of(context).accentColor,
+              child: Card(
+                child: ListView(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
+                      child: Image.asset('assets/bird.png'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
