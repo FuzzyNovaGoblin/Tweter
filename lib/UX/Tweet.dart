@@ -11,13 +11,44 @@ class Tweet extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Flexible(
-            child: Container(
-          constraints: BoxConstraints(maxWidth: 598),
-          child: Card(child: content(pid)),
-        )),
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 598),
+            child: GestureDetector(
+              onLongPress: () => _retweet(context, pid),
+              onSecondaryTap: () => _retweet(context, pid),
+              child: Card(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: content(pid),
+              )),
+            ),
+          ),
+        ),
       ],
     );
   }
+}
+
+void _retweet(BuildContext context, int pid) {
+  showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            content: Text("RETWEET?"),
+            actions: [
+              TextButton(
+                child: Text(
+                  "cancel",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                onPressed: () => Navigator.pop(context),
+              ),
+              TextButton(
+                  child: Text("retweet"),
+                  onPressed: () {
+                    makeReTweet(pid);
+                    Navigator.pop(context);
+                  }),
+            ],
+          ));
 }
 
 Widget content(int pid) {
