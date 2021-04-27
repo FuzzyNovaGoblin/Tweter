@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tweter/UX/MainDrawer.dart';
+import 'package:tweter/UX/ReTweet.dart';
 import 'package:tweter/UX/Titlebar.dart';
 import 'package:tweter/Singleton.dart';
-import 'package:tweter/data/DataFetchers.dart';
-import 'package:tweter/data/TweetData.dart';
-
+import 'package:tweter/UX/Tweet.dart';
+import 'package:tweter/UX/ReTweet.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -35,13 +35,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      // need to add padding 
+                      // need to add padding
                       Singleton().userName,
                       textAlign: TextAlign.left,
                       style: TextStyle(fontWeight: FontWeight.bold),
+                      // insert follower-following counts
                     ),
                   ),
-                  // Text(Singleton().numFollowers),
                   Container(
                     alignment: Alignment.center,
                     // Text(Singleton().numFollowing),
@@ -49,8 +49,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     height: 20,
                   ),
-                  Container(
-                    
+                  Row(
+                    children: [
+                      Container(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            Tweet(Singleton().pid);
+                          },
+                          child: Text("Tweets"),
+                        ),
+                      ),
+                      Container(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            ReTweet(Singleton().pid);
+                          },
+                          child: Text("Retweets"),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -61,4 +78,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
