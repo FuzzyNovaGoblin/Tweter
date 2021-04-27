@@ -110,3 +110,7 @@ Future getFollowingIds() async {
 Future makeTweet(String text) async {
   await http.post(Uri.http("23.254.244.168", "/api/sql/tweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "text": text}));
 }
+
+Future makeReTweet(int pid) async {
+  await http.post(Uri.http("23.254.244.168", "/api/sql/tweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "original_post_id": pid}));
+}

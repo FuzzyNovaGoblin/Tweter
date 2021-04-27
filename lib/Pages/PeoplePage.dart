@@ -3,6 +3,7 @@ import 'package:tuple/tuple.dart';
 import 'package:tweter/Singleton.dart';
 import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/Titlebar.dart';
+import 'package:tweter/UX/Tweet.dart';
 import 'package:tweter/data/DataFetchers.dart';
 
 class PeoplePage extends StatefulWidget {
@@ -16,7 +17,6 @@ class _PeoplePageState extends State<PeoplePage> {
     getFollowingIds();
     return Scaffold(
       drawer: MainDrawer(),
-
       appBar: titleAppBar(context),
       body: FutureBuilder(
           future: getAllUsers(),
@@ -48,25 +48,27 @@ class UserCard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          constraints: BoxConstraints(
-            maxWidth: 600,
-          ),
-          height: 55,
-          child: SizedBox.expand(
-            child: Card(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      data.item1,
-                      style: Theme.of(context).textTheme.headline5,
+        Flexible(
+                  child: Container(
+            constraints: BoxConstraints(
+              maxWidth: 600,
+            ),
+            height: 55,
+            child: SizedBox.expand(
+              child: Card(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        data.item1,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                     ),
-                  ),
-                  FollowButton(data.item2)
-                ],
+                    FollowButton(data.item2)
+                  ],
+                ),
               ),
             ),
           ),
