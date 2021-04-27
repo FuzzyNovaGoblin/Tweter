@@ -5,7 +5,7 @@ class Singleton {
   factory Singleton() => _singletonRef;
 
   String userName = "INSERT USERNAME";
-  int uid = -1;
+  int uid = 2;
   List<int> followingIds= [];
 
   // -----Routes-----

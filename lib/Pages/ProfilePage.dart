@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/Titlebar.dart';
+import 'package:tweter/Singleton.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -28,6 +29,21 @@ class _ProfilePageState extends State<ProfilePage> {
                     constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
                     child: Image.asset('assets/bird.png'),
                   ),
+                  Text(
+                    Singleton().userName,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  // Text(Singleton().numFollowers),
+                  Container(
+                    alignment: Alignment.center,
+                    // Text(Singleton().numFollowing),
+                  ),
+                  Container(
+                    // Padding between profile and Tweet selection bar
+                    // if theres a better way make a comment @grant
+                    padding: const EdgeInsets.only(left: 20)
+                  ),
                 ],
               ),
             ),
@@ -37,3 +53,4 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
+
