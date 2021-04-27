@@ -32,11 +32,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
                     child: Image.asset('assets/bird.png'),
                   ),
-                  Text(
-                    // need to add padding 
-                    Singleton().userName,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      // need to add padding 
+                      Singleton().userName,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   // Text(Singleton().numFollowers),
                   Container(
@@ -44,10 +47,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     // Text(Singleton().numFollowing),
                   ),
                   Container(
-                    // Padding between profile and Tweet selection bar
-                    // if theres a better way make a comment @grant
-                    // GPG TEST PLEASE WORK
-                    padding: const EdgeInsets.only(left: 20)
+                    height: 20,
+                  ),
+                  Container(
+                    
                   ),
                 ],
               ),
