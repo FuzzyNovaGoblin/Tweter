@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/Titlebar.dart';
 import 'package:tweter/Singleton.dart';
+import 'package:tweter/data/DataFetchers.dart';
+import 'package:tweter/data/TweetData.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -30,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Image.asset('assets/bird.png'),
                   ),
                   Text(
+                    // need to add padding 
                     Singleton().userName,
                     textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -44,6 +48,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     // if theres a better way make a comment @grant
                     // GPG TEST PLEASE WORK
                     padding: const EdgeInsets.only(left: 20)
+                  ),
+                  Container(
+                    child: Text(),
                   ),
                 ],
               ),
