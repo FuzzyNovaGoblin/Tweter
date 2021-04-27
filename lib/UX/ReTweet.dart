@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:tweter/UX/Tweet.dart';
 import 'package:tweter/data/DataFetchers.dart';
-import 'package:tweter/data/PostData.dart';
 import 'package:tweter/data/ReTweetData.dart';
-import 'dart:convert';
 
 class ReTweet extends StatelessWidget {
   final int pid;

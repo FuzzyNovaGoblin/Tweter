@@ -3,7 +3,6 @@ import 'package:tuple/tuple.dart';
 import 'package:tweter/Singleton.dart';
 import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/Titlebar.dart';
-import 'package:tweter/UX/Tweet.dart';
 import 'package:tweter/data/DataFetchers.dart';
 
 class PeoplePage extends StatefulWidget {
