@@ -47,7 +47,6 @@ Widget content(int pid) {
               padding: const EdgeInsets.all(8.0),
               child: Tweet(snap.data.originalPostId),
             ),
-            // Text(snap.data.text, style: Theme.of(context).textTheme.bodyText2,),
             Row(
               children: [
                 Spacer(),
@@ -64,13 +63,3 @@ Widget content(int pid) {
     },
   );
 }
-
-// Future<ReTweetData> fetchTweetData(int pid) async {
-//   final getData = await http.get(Uri.http("23.254.244.168", "/api/sql/tweet/$pid"));
-//   if (getData.statusCode == 200) {
-//     return ReTweetData.fromJson(pid, jsonDecode(getData.body)[0]);
-//   } else {
-//     print("here error");
-//     throw Exception();
-//   }
-// }
