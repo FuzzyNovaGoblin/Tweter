@@ -61,5 +61,8 @@ _hasData(BuildContext context, List<Tuple2<int, PostType>> data, Function ss) =>
     );
 
 _hasError(BuildContext context, AsyncSnapshot snap) => Center(
-      child: Material(color: Theme.of(context).errorColor, child: Text("Error ocured ${snap.error}")),
+      child: Material(
+        color: Theme.of(context).errorColor,
+        child: Text("Error ocured ${snap.error}"),
+      ),
     );

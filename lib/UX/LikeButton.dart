@@ -10,20 +10,21 @@ class LikeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: Icon(
-          Singleton().likes.contains(data.pid) ? Icons.favorite : Icons.favorite_border,
-          color: Singleton().likes.contains(data.pid) ? Colors.redAccent[400] : Colors.grey,
-        ),
-        onPressed: () {
-          if (Singleton().likes.contains(data.pid)) {
-            Singleton().likes.remove(data.pid);
-            ss();
-            unlikeTweet(data.pid);
-          } else {
-            Singleton().likes.add(data.pid);
-            ss();
-            likeTweet(data.pid);
-          }
-        });
+      icon: Icon(
+        Singleton().likes.contains(data.pid) ? Icons.favorite : Icons.favorite_border,
+        color: Singleton().likes.contains(data.pid) ? Colors.redAccent[400] : Colors.grey,
+      ),
+      onPressed: () {
+        if (Singleton().likes.contains(data.pid)) {
+          Singleton().likes.remove(data.pid);
+          ss();
+          unlikeTweet(data.pid);
+        } else {
+          Singleton().likes.add(data.pid);
+          ss();
+          likeTweet(data.pid);
+        }
+      },
+    );
   }
 }

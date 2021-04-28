@@ -103,8 +103,6 @@ Widget hasDataContent(BuildContext context, TweetData data, Function ss) {
   );
 }
 
-
-
 class _RetweetButton extends StatelessWidget {
   final TweetData data;
   const _RetweetButton(this.data, {Key key}) : super(key: key);

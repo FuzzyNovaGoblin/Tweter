@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     (vs == _ViewState.Tweets)
                         ? FutureBuilder<List<int>>(
-                              key: Key("tweetview"),
+                            key: Key("tweetview"),
                             future: getUserTweets(Singleton().otherUid),
                             initialData: [],
                             builder: (context, snap) {
@@ -131,14 +131,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             })
                         : (vs == _ViewState.Retweets)
                             ? FutureBuilder<List<int>>(
-                              key: Key("retweetview"),
+                                key: Key("retweetview"),
                                 future: getUserReTweets(Singleton().otherUid),
                                 initialData: [],
                                 builder: (context, snap) {
                                   return Column(children: _reTweetGetter(context, snap.data, () => setState(() {})));
                                 })
                             : FutureBuilder<List<Tuple2>>(
-                              key: Key("likeview"),
+                                key: Key("likeview"),
                                 future: getLikes(Singleton().otherUid),
                                 initialData: [],
                                 builder: (context, snap) {
