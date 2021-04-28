@@ -4,6 +4,7 @@ import 'package:tweter/UX/Titlebar.dart';
 import 'package:tweter/Singleton.dart';
 import 'package:tweter/UX/Tweet.dart';
 import 'package:tweter/UX/ReTweet.dart';
+import 'package:tweter/data/DataFetchers.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -35,12 +36,28 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        // need to add padding
-                        Singleton().userName,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        // insert follower-following counts
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          children: [
+                            Text(
+                              // need to add padding
+                              '${Singleton().userName}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            FutureBuilder(
+                              future: getFolloweringCount(Singleton().uid),
+                              initialData: {'following': 0, 'followed': 0},
+                              builder: (context, snap) => Text(
+                                // need to add padding
+                                'Following:${snap.data['following']} | Followers: ${snap.data['followed']}',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
