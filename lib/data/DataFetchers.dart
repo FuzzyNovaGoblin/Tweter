@@ -9,7 +9,6 @@ import 'package:tweter/data/TweetData.dart';
 
 const String API_IP_ADDR = "api.tweter.club";
 
-
 Future<List<Tuple2<int, PostType>>> getTimeLineData(int uid) async {
   final getData = await http.get(Uri.https(API_IP_ADDR, "/api/sql/timeline/$uid"));
   if (getData.statusCode == 200) {
@@ -74,7 +73,6 @@ Future<bool> addUser(String name, String pass) async {
   final getData = await http.post(Uri.https(API_IP_ADDR, "/api/sql/newuser"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UNAME": name, "UFN": "", "ULN": "", "pass_hash": pass, "email": ""}));
 
   if (getData.statusCode == 201) {
-    print(jsonDecode(getData.body));
     Singleton().userName = name;
     Singleton().uid = jsonDecode(getData.body)['UID'];
   } else {
@@ -107,7 +105,6 @@ Future unfollow(int uid) async {
 Future getFollowingIds() async {
   final getData = await http.get(Uri.https(API_IP_ADDR, "/api/sql/followers/${Singleton().uid}"));
   final List<dynamic> jsonData = jsonDecode(getData.body);
-  print(jsonData);
   Singleton().followingIds.clear();
   Singleton().followingIds.addAll(jsonData.map((i) => i as int).toList());
 }
@@ -138,7 +135,6 @@ Future<List<int>> getUserReTweets(int uid) async {
   for (int i = 0; i < jsonData.length; i++) {
     retData.add(jsonData[i]['PID']);
   }
-
   return retData;
 }
 
@@ -146,4 +142,22 @@ Future<Map<String, int>> getFolloweringCount(int uid) async {
   final getdata = await http.get(Uri.https(API_IP_ADDR, "/api/sql/followerscount/$uid"));
   final jsonData = jsonDecode(getdata.body);
   return {'following': jsonData['following'], 'followed': jsonData['followed']};
+}
+
+Future<List<int>> getLikes(int uid) async {
+  final getdata = await http.get(Uri.https(API_IP_ADDR, "/api/sql/likes/$uid"));
+  final jsonData = jsonDecode(getdata.body);
+  List<int> retData = [];
+  for (int i = 0; i < jsonData.length; i++) {
+    retData.add(jsonData[i]);
+  }
+  return retData;
+}
+
+
+Future likeTweet(int pid) async {
+  await http.post(Uri.https(API_IP_ADDR, "/api/sql/like"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "PID": pid}));
+}
+Future unlikeTweet(int pid) async {
+  await http.post(Uri.https(API_IP_ADDR, "/api/sql/unlike"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "PID": pid}));
 }

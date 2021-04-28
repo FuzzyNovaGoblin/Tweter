@@ -8,8 +8,6 @@ import 'package:tweter/UX/ReTweet.dart';
 import 'package:tweter/data/DataFetchers.dart';
 
 class ProfilePage extends StatefulWidget {
-
-
   const ProfilePage({Key key}) : super(key: key);
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -111,13 +109,13 @@ class _ProfilePageState extends State<ProfilePage> {
                             future: getUserTweets(Singleton().otherUid),
                             initialData: [],
                             builder: (context, snap) {
-                              return Column(children: _tweetGetter(context, snap.data));
+                              return Column(children: _tweetGetter(context, snap.data, () => setState(() {})));
                             })
                         : FutureBuilder(
                             future: getUserReTweets(Singleton().otherUid),
                             initialData: [],
                             builder: (context, snap) {
-                              return Column(children: _reTweetGetter(context, snap.data));
+                              return Column(children: _reTweetGetter(context, snap.data, () => setState(() {})));
                             }),
                   ],
                 ),
@@ -130,18 +128,18 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-_tweetGetter(BuildContext context, List<dynamic> data) {
+_tweetGetter(BuildContext context, List<dynamic> data, Function ss) {
   List<Widget> widgetList = [];
   for (int i = 0; i < data.length; i++) {
-    widgetList.add(Tweet(data[i]));
+    widgetList.add(Tweet(data[i], ss));
   }
   return widgetList;
 }
 
-_reTweetGetter(BuildContext context, List<dynamic> data) {
+_reTweetGetter(BuildContext context, List<dynamic> data, Function ss) {
   List<Widget> widgetList = [];
   for (int i = 0; i < data.length; i++) {
-    widgetList.add(ReTweet(data[i]));
+    widgetList.add(ReTweet(data[i], ss));
   }
   return widgetList;
 }

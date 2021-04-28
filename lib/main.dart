@@ -4,6 +4,7 @@ import 'package:tweter/Pages/PeoplePage.dart';
 import 'package:tweter/Pages/TimeLinePage.dart';
 import 'package:tweter/Pages/ProfilePage.dart';
 import 'package:tweter/Singleton.dart';
+import 'package:tweter/data/DataFetchers.dart';
 
 // ---------------------------------Theme Data---------------------------------
 const Color darkerMain = Color(0xFF34b396);
@@ -59,7 +60,15 @@ MaterialApp baseApp = MaterialApp(
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
     if (settings.name == Singleton.timeLineRoute) {
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => TimeLinePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+      return PageRouteBuilder(
+          pageBuilder: (_, __, ___) {
+            getLikes(Singleton().uid).then((value) {
+              Singleton().likes.clear();
+              Singleton().likes.addAll(value);
+            });
+            return TimeLinePage();
+          },
+          transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
     if (settings.name == Singleton.profileRoute) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => ProfilePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));

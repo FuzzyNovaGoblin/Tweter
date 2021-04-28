@@ -6,10 +6,11 @@ class Singleton {
 
   String userName = "INSERT USERNAME";
   int uid = -1;
+  List<int> likes = [];
 
   String otherUserName = "INSERT USERNAME";
   int otherUid = -1;
-  List<int> followingIds= [];
+  List<int> followingIds = [];
 
   // -----Routes-----
   static const String timeLineRoute = "/timeline";

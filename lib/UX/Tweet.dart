@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tweter/Singleton.dart';
+import 'package:tweter/UX/LikeButton.dart';
 import 'package:tweter/data/DataFetchers.dart';
 import 'package:tweter/data/TweetData.dart';
 
 class Tweet extends StatelessWidget {
+  final Function ss;
   final int pid;
-  const Tweet(this.pid, {Key key}) : super(key: key);
+  const Tweet(this.pid, this.ss, {Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,9 +19,10 @@ class Tweet extends StatelessWidget {
             child: GestureDetector(
               onLongPress: () => _retweet(context, pid),
               onSecondaryTap: () => _retweet(context, pid),
-              child: Card(child: Padding(
+              child: Card(
+                  child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: content(pid),
+                child: content(pid, ss),
               )),
             ),
           ),
@@ -51,19 +55,20 @@ void _retweet(BuildContext context, int pid) {
           ));
 }
 
-Widget content(int pid) {
+Widget content(int pid, Function ss) {
   return FutureBuilder<TweetData>(
     future: fetchTweetData(pid),
     builder: (context, snap) {
       if (snap.hasData) {
-        return hasDataContent(context, snap.data);
+        return hasDataContent(context, snap.data, ss);
       }
       return CircularProgressIndicator();
     },
   );
 }
 
-Widget hasDataContent(BuildContext context, TweetData data) {
+Widget hasDataContent(BuildContext context, TweetData data, Function ss) {
+  // print(Singleton().likes);
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -73,8 +78,9 @@ Widget hasDataContent(BuildContext context, TweetData data) {
             data.uname,
             style: Theme.of(context).textTheme.headline6,
           ),
-          Spacer()
-          // IconButton(icon: Icon(Icons.favorite_border), onPressed: onPressed)
+          Spacer(),
+          LikeButton(data, ss),
+          _RetweetButton(data),
         ],
       ),
       Container(
@@ -95,4 +101,21 @@ Widget hasDataContent(BuildContext context, TweetData data) {
       ),
     ],
   );
+}
+
+
+
+class _RetweetButton extends StatelessWidget {
+  final TweetData data;
+  const _RetweetButton(this.data, {Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        icon: Icon(
+          Icons.repeat,
+        ),
+        onPressed: () {
+          _retweet(context, data.pid);
+        });
+  }
 }
