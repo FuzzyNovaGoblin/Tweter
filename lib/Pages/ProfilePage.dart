@@ -43,31 +43,51 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Container(
-                    alignment: Alignment.center,
-                    // Text(Singleton().numFollowing),
-                  ),
-                  Container(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        child: OutlinedButton(
-                          onPressed: () {
-                            Tweet(Singleton().pid);
-                          },
-                          child: Text("Tweets"),
-                        ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            top:
+                                BorderSide(width: 2.0, color: Colors.white60))),
+                    child: Row(children: [
+                      Expanded(
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        width: 1.0, color: Colors.white60))),
+                            child: InkWell(
+                              onTap: () {
+                                // need to add
+                              },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                              "Tweets",
+                              textAlign: TextAlign.center,
+                            ),
+                                ))),
                       ),
-                      Container(
-                        child: OutlinedButton(
-                          onPressed: () {
-                            ReTweet(Singleton().pid);
-                          },
-                          child: Text("Retweets"),
-                        ),
+                      Expanded(
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    left: BorderSide(
+                                        width: 1.0, color: Colors.white60))),
+                            child: InkWell(
+                              onTap: () {
+                                // need to add 
+                              },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                              "Retweets",
+                              textAlign: TextAlign.center,
+                            ),
+                                ))),
                       ),
-                    ],
+                    ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
                   ),
                 ],
               ),
