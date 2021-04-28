@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/Titlebar.dart';
 import 'package:tweter/Singleton.dart';
