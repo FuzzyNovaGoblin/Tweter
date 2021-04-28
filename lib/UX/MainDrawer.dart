@@ -24,6 +24,8 @@ class MainDrawer extends StatelessWidget {
               leading: Icon(Icons.account_circle, color: Colors.white),
               title: Text('Profile'),
               onTap: () {
+                Singleton().otherUid = Singleton().uid;
+                Singleton().otherUserName = Singleton().userName;
                 Navigator.pop(context);
                 Navigator.pushNamed(context, Singleton.profileRoute);
               },

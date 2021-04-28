@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 import 'package:tweter/Pages/LoginPage.dart';
 import 'package:tweter/Pages/PeoplePage.dart';
 import 'package:tweter/Pages/TimeLinePage.dart';
 import 'package:tweter/Pages/ProfilePage.dart';
 import 'package:tweter/Singleton.dart';
+import 'package:tweter/data/DataFetchers.dart';
+import 'package:tweter/data/PostData.dart';
 
 // ---------------------------------Theme Data---------------------------------
 const Color darkerMain = Color(0xFF34b396);
@@ -49,6 +52,7 @@ ThemeData _themeData = ThemeData(
 
 MaterialApp baseApp = MaterialApp(
   theme: _themeData,
+  title: "Tweter",
   onGenerateRoute: (settings) {
     if (Singleton().uid < 1) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
@@ -58,7 +62,17 @@ MaterialApp baseApp = MaterialApp(
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
     if (settings.name == Singleton.timeLineRoute) {
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => TimeLinePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
+      return PageRouteBuilder(
+          pageBuilder: (_, __, ___) {
+            getLikes(Singleton().uid).then((value) {
+              Singleton().likes.clear();
+              for (int i = 0; i < value.length; i++) {
+                Singleton().likes.add(value[i].item1);
+              }
+            });
+            return TimeLinePage();
+          },
+          transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));
     }
     if (settings.name == Singleton.profileRoute) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => ProfilePage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));

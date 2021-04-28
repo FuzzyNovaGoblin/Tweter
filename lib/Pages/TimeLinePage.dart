@@ -17,14 +17,19 @@ class TimeLinePage extends StatefulWidget {
 class _TimeLinePageState extends State<TimeLinePage> {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       floatingActionButton: FloatingActionButton(child: Icon(Icons.edit, color: Theme.of(context).backgroundColor), onPressed: () => showDialog(context: context, builder: (context) => ComposeTweet())),
       drawer: MainDrawer(),
       body: FutureBuilder<List<Tuple2<int, PostType>>>(
         future: getTimeLineData(Singleton().uid),
         builder: (context, snap) {
-          if (snap.hasData) return _hasData(context, snap.data);
+          if (snap.hasData)
+            return _hasData(
+                context,
+                snap.data,
+                () => setState(() {
+                      print("ss timeline");
+                    }));
 
           if (snap.hasError) return _hasError(context, snap);
 
@@ -35,7 +40,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
   }
 }
 
-_hasData(BuildContext context, List<Tuple2<int, PostType>> data) => CustomScrollView(
+_hasData(BuildContext context, List<Tuple2<int, PostType>> data, Function ss) => CustomScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       slivers: [
         titleBar(context),
@@ -44,10 +49,11 @@ _hasData(BuildContext context, List<Tuple2<int, PostType>> data) => CustomScroll
             if (data[index].item2 == PostType.Tweet) {
               return Tweet(
                 data[index].item1,
+                ss,
                 key: Key("${data[index].item1}"),
               );
             } else {
-              return ReTweet(data[index].item1, key: Key("${data[index].item1}"));
+              return ReTweet(data[index].item1, ss, key: Key("${data[index].item1}"));
             }
           }, childCount: data.length),
         ),
@@ -55,5 +61,8 @@ _hasData(BuildContext context, List<Tuple2<int, PostType>> data) => CustomScroll
     );
 
 _hasError(BuildContext context, AsyncSnapshot snap) => Center(
-      child: Material(color: Theme.of(context).errorColor, child: Text("Error ocured ${snap.error}")),
+      child: Material(
+        color: Theme.of(context).errorColor,
+        child: Text("Error ocured ${snap.error}"),
+      ),
     );
