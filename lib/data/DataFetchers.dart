@@ -122,6 +122,28 @@ Future makeTweet(String text) async {
 }
 
 Future makeReTweet(int pid) async {
-  print("here");
   await http.post(Uri.http("23.254.244.168", "/api/sql/retweet"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "original_post_id": pid}));
 }
+
+Future<List<int>> getUserTweets(int uid) async {
+  final getdata = await http.get(Uri.http("23.254.244.168", "/api/sql/tweets/$uid"));
+  final jsonData = jsonDecode(getdata.body);
+  List<int> retData = [];
+  for (int i = 0; i < jsonData.length; i++) {
+    retData.add(jsonData[i]['PID']);
+  }
+
+  return retData;
+}
+
+Future<List<int>> getUserReTweets(int uid) async {
+  final getdata = await http.get(Uri.http("23.254.244.168", "/api/sql/retweets/$uid"));
+  final jsonData = jsonDecode(getdata.body);
+  List<int> retData = [];
+  for (int i = 0; i < jsonData.length; i++) {
+    retData.add(jsonData[i]['PID']);
+  }
+
+  return retData;
+}
+
