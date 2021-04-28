@@ -6,6 +6,9 @@ class Singleton {
 
   String userName = "INSERT USERNAME";
   int uid = -1;
+
+  String otherUserName = "INSERT USERNAME";
+  int otherUid = -1;
   List<int> followingIds= [];
 
   // -----Routes-----

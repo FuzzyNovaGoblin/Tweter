@@ -74,6 +74,7 @@ Widget hasDataContent(BuildContext context, TweetData data) {
             style: Theme.of(context).textTheme.headline6,
           ),
           Spacer()
+          // IconButton(icon: Icon(Icons.favorite_border), onPressed: onPressed)
         ],
       ),
       Container(

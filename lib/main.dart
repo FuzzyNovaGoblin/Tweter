@@ -49,6 +49,7 @@ ThemeData _themeData = ThemeData(
 
 MaterialApp baseApp = MaterialApp(
   theme: _themeData,
+  title: "Tweter",
   onGenerateRoute: (settings) {
     if (Singleton().uid < 1) {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => LoginPage(), transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c));

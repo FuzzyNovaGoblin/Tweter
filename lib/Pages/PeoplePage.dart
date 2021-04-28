@@ -48,25 +48,32 @@ class UserCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Flexible(
-                  child: Container(
+          child: Container(
             constraints: BoxConstraints(
               maxWidth: 600,
             ),
             height: 55,
             child: SizedBox.expand(
-              child: Card(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data.item1,
-                        style: Theme.of(context).textTheme.headline5,
+              child: InkWell(
+                onTap: () {
+                  Singleton().otherUid = data.item2;
+                  Singleton().otherUserName = data.item1;
+                  Navigator.pushNamed(context, Singleton.profileRoute);
+                },
+                child: Card(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          data.item1,
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
                       ),
-                    ),
-                    FollowButton(data.item2)
-                  ],
+                      FollowButton(data.item2)
+                    ],
+                  ),
                 ),
               ),
             ),
