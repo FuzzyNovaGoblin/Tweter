@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:tuple/tuple.dart';
 import 'package:tweter/Singleton.dart';
@@ -144,12 +143,12 @@ Future<Map<String, int>> getFolloweringCount(int uid) async {
   return {'following': jsonData['following'], 'followed': jsonData['followed']};
 }
 
-Future<List<int>> getLikes(int uid) async {
+Future<List<Tuple2<int, PostType>>> getLikes(int uid) async {
   final getdata = await http.get(Uri.https(API_IP_ADDR, "/api/sql/likes/$uid"));
   final jsonData = jsonDecode(getdata.body);
-  List<int> retData = [];
+  List<Tuple2<int, PostType>> retData = [];
   for (int i = 0; i < jsonData.length; i++) {
-    retData.add(jsonData[i]);
+    retData.add(Tuple2(jsonData[i][0], jsonData[i][1] == 0?PostType.Tweet:PostType.ReTweet));
   }
   return retData;
 }
@@ -158,6 +157,17 @@ Future<List<int>> getLikes(int uid) async {
 Future likeTweet(int pid) async {
   await http.post(Uri.https(API_IP_ADDR, "/api/sql/like"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "PID": pid}));
 }
+
 Future unlikeTweet(int pid) async {
   await http.post(Uri.https(API_IP_ADDR, "/api/sql/unlike"), headers: {"Content-Type": "application/json"}, body: jsonEncode({"UID": Singleton().uid, "PID": pid}));
 }
+
+// Future<List<Tuple2<int, PostType>>> getLikeTweets(int uid) async {
+//   final likes = lik
+//   final jsonData = jsonDecode(getdata.body);
+//   List<int> retData = [];
+//   for (int i = 0; i < jsonData.length; i++) {
+//     retData.add(jsonData[i]);
+//   }
+//   return retData;
+// }
