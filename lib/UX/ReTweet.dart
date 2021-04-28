@@ -55,10 +55,7 @@ Widget content(int pid) {
             ),
           ],
         );
-      } else if (snap.hasError) {
-        return Placeholder();
       }
-
       return CircularProgressIndicator();
     },
   );

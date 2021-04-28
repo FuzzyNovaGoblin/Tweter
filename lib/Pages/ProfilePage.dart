@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:tweter/UX/MainDrawer.dart';
 import 'package:tweter/UX/Titlebar.dart';
 import 'package:tweter/Singleton.dart';
@@ -11,7 +14,10 @@ class ProfilePage extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
+enum _ViewState { Tweets, Retweets }
+
 class _ProfilePageState extends State<ProfilePage> {
+  _ViewState vs = _ViewState.Tweets;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           width: 1.0, color: Colors.white60))),
                               child: InkWell(
                                   onTap: () {
-                                    // need to add
+                                    setState(() => {vs = _ViewState.Tweets});
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -97,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           width: 1.0, color: Colors.white60))),
                               child: InkWell(
                                   onTap: () {
-                                    // need to add
+                                    setState(() => {vs = _ViewState.Retweets});
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -111,6 +117,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
                     ),
+                    (vs == _ViewState.Tweets)
+                        ? FutureBuilder(
+                            future: getUserTweets(Singleton().uid),
+                            initialData: [],
+                            builder: (context, snap) {
+                              return Column(
+                                  children: _tweetGetter(context, snap.data));
+                            })
+                        : FutureBuilder(
+                            future: getUserReTweets(Singleton().uid),
+                            initialData: [],
+                            builder: (context, snap) {
+                              return Column(
+                                  children: _reTweetGetter(context, snap.data));
+                            }),
                   ],
                 ),
               ),
@@ -120,4 +141,20 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+}
+
+_tweetGetter(BuildContext context, List<dynamic> data) {
+  List<Widget> widgetList = [];
+  for (int i = 0; i < data.length; i++) {
+    widgetList.add(Tweet(data[i]));
+  }
+  return widgetList;
+}
+
+_reTweetGetter(BuildContext context, List<dynamic> data) {
+  List<Widget> widgetList = [];
+  for (int i = 0; i < data.length; i++) {
+    widgetList.add(ReTweet(data[i]));
+  }
+  return widgetList;
 }
