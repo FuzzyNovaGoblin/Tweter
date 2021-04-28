@@ -147,3 +147,8 @@ Future<List<int>> getUserReTweets(int uid) async {
   return retData;
 }
 
+Future<Map<String, int>> getFolloweringCount(int uid) async {
+  final getdata = await http.get(Uri.http("23.254.244.168", "/api/sql/followerscount/$uid"));
+  final jsonData = jsonDecode(getdata.body);
+  return {'following': jsonData['following'], 'followed': jsonData['followed']};
+}
