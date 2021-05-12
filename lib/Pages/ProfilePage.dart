@@ -31,120 +31,125 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Container(
               constraints: BoxConstraints(maxWidth: 598),
               alignment: Alignment.center,
-              child: Card(
-                child: ListView(
-                  children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
-                      child: Image.asset('assets/bird.png'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          children: [
-                            Text(
-                              // need to add padding
-                              '${Singleton().otherUserName}',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontWeight: FontWeight.bold),
+              child: SizedBox(
+                height: Size.infinite.height,
+                child: SingleChildScrollView(
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
+                          child: Image.asset('assets/bird.png'),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Column(
+                              children: [
+                                Text(
+                                  // need to add padding
+                                  '${Singleton().otherUserName}',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                FutureBuilder(
+                                  future: getFolloweringCount(Singleton().otherUid),
+                                  initialData: {'following': 0, 'followed': 0},
+                                  builder: (context, snap) => Text(
+                                    // need to add padding
+                                    'Following:${snap.data['following']} | Followers: ${snap.data['followed']}',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
                             ),
-                            FutureBuilder(
-                              future: getFolloweringCount(Singleton().otherUid),
-                              initialData: {'following': 0, 'followed': 0},
-                              builder: (context, snap) => Text(
-                                // need to add padding
-                                'Following:${snap.data['following']} | Followers: ${snap.data['followed']}',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
+                          ),
+                        ),
+                        Container(
+                          height: 20,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(border: Border(top: BorderSide(width: 2.0, color: Colors.white60))),
+                          child: Row(children: [
+                            Expanded(
+                              child: Container(
+                                  decoration: BoxDecoration(border: Border(right: BorderSide(width: 1.0, color: Colors.white60))),
+                                  child: InkWell(
+                                      onTap: () {
+                                        setState(() => {vs = _ViewState.Tweets});
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Tweets",
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context).textTheme.headline5,
+                                        ),
+                                      ))),
                             ),
-                          ],
+                            Expanded(
+                              child: Container(
+                                  decoration: BoxDecoration(border: Border(left: BorderSide(width: 1.0, color: Colors.white60))),
+                                  child: InkWell(
+                                      onTap: () {
+                                        setState(() => {vs = _ViewState.Retweets});
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Retweets",
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context).textTheme.headline5,
+                                        ),
+                                      ))),
+                            ),
+                            Expanded(
+                              child: Container(
+                                  decoration: BoxDecoration(border: Border(left: BorderSide(width: 1.0, color: Colors.white60))),
+                                  child: InkWell(
+                                      onTap: () {
+                                        setState(() => {vs = _ViewState.Likes});
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Likes",
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context).textTheme.headline5,
+                                        ),
+                                      ))),
+                            ),
+                          ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
                         ),
-                      ),
-                    ),
-                    Container(
-                      height: 20,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(border: Border(top: BorderSide(width: 2.0, color: Colors.white60))),
-                      child: Row(children: [
-                        Expanded(
-                          child: Container(
-                              decoration: BoxDecoration(border: Border(right: BorderSide(width: 1.0, color: Colors.white60))),
-                              child: InkWell(
-                                  onTap: () {
-                                    setState(() => {vs = _ViewState.Tweets});
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Tweets",
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ))),
-                        ),
-                        Expanded(
-                          child: Container(
-                              decoration: BoxDecoration(border: Border(left: BorderSide(width: 1.0, color: Colors.white60))),
-                              child: InkWell(
-                                  onTap: () {
-                                    setState(() => {vs = _ViewState.Retweets});
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Retweets",
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ))),
-                        ),
-                        Expanded(
-                          child: Container(
-                              decoration: BoxDecoration(border: Border(left: BorderSide(width: 1.0, color: Colors.white60))),
-                              child: InkWell(
-                                  onTap: () {
-                                    setState(() => {vs = _ViewState.Likes});
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Likes",
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ))),
-                        ),
-                      ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
-                    ),
-                    (vs == _ViewState.Tweets)
-                        ? FutureBuilder<List<int>>(
-                            key: Key("tweetview"),
-                            future: getUserTweets(Singleton().otherUid),
-                            initialData: [],
-                            builder: (context, snap) {
-                              return Column(children: _tweetGetter(context, snap.data, () => setState(() {})));
-                            })
-                        : (vs == _ViewState.Retweets)
+                        (vs == _ViewState.Tweets)
                             ? FutureBuilder<List<int>>(
-                                key: Key("retweetview"),
-                                future: getUserReTweets(Singleton().otherUid),
+                                key: Key("tweetview"),
+                                future: getUserTweets(Singleton().otherUid),
                                 initialData: [],
                                 builder: (context, snap) {
-                                  return Column(children: _reTweetGetter(context, snap.data, () => setState(() {})));
+                                  return Column(children: _tweetGetter(context, snap.data, () => setState(() {})));
                                 })
-                            : FutureBuilder<List<Tuple2>>(
-                                key: Key("likeview"),
-                                future: getLikes(Singleton().otherUid),
-                                initialData: [],
-                                builder: (context, snap) {
-                                  return Column(children: _likeGetter(context, snap.data, () => setState(() {})));
-                                }),
-                  ],
+                            : (vs == _ViewState.Retweets)
+                                ? FutureBuilder<List<int>>(
+                                    key: Key("retweetview"),
+                                    future: getUserReTweets(Singleton().otherUid),
+                                    initialData: [],
+                                    builder: (context, snap) {
+                                      return Column(children: _reTweetGetter(context, snap.data, () => setState(() {})));
+                                    })
+                                : FutureBuilder<List<Tuple2>>(
+                                    key: Key("likeview"),
+                                    future: getLikes(Singleton().otherUid),
+                                    initialData: [],
+                                    builder: (context, snap) {
+                                      return Column(children: _likeGetter(context, snap.data, () => setState(() {})));
+                                    }),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

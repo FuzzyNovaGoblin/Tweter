@@ -20,6 +20,11 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: "^0.9.0"
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/fillbird.png"
+
 flutter:
 
   uses-material-design: true
