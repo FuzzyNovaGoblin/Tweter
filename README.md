@@ -1,5 +1,5 @@
 # Tweter
-Grant Hedley, Liam Cannon
+Octavia Lovelace, Liam Cannon
 
 
 Also see [tweter-server](https://github.com/FuzzyNovaGoblin/tweter-server)
